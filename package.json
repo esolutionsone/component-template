@@ -1,12 +1,12 @@
 {
-	"name": "testing-project",
+	"name": "template-component",
 	"version": "0.0.1",
 	"private": false,
-	"description": "testing-project",
+	"description": "template-component",
 	"keywords": [
 		"ServiceNow",
 		"Now Experience UI Component",
-		"testing-project"
+		"template-component"
 	],
 	"readme": "./README.md",
 	"engines": {

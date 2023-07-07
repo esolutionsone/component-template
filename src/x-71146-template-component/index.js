@@ -33,7 +33,7 @@ const view = (state, { updateState, dispatch }) => {
 	);
 };
 
-createCustomElement('x-71146-testing-project', {
+createCustomElement('x-71146-template-component', {
 	renderer: {type: snabbdom},
 	/* State variables loading, method, selectedTable, query, and user are included 
 	to help with setting up GET / POST but may not be required for your project */
