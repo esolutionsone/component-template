@@ -1,6 +1,6 @@
 {
 	"components": {
-	    "x-71146-template-component": {
+	    "x-853443-template-component": {
 	        "innerComponents": [],
 			"uiBuilder": {
 				"associatedTypes": ["global.core", "global.landing-page"],
@@ -22,5 +22,5 @@
 			]
 	    }
 	},
-	"scopeName": "x_71146_template_0"
+	"scopeName": "x_853443_template_0"
 }

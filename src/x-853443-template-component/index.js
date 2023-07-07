@@ -25,15 +25,15 @@ const view = (state, { updateState, dispatch }) => {
 			}
 		{/* JSX Switch Statement using Object Literal example */
 			{
-				"GET": 		<div>Render OPTION1</div>,
-				"OPTION2": 	<div>Render OPTION2</div>
+				"GET": 		<h3 className='options-example'>Render OPTION1</h3>,
+				"OPTION2": 	<h3 className='options-example'>Render OPTION2</h3>
 			}[method]
 		}
 		</div>
 	);
 };
 
-createCustomElement('x-71146-template-component', {
+createCustomElement('x-853443-template-component', {
 	renderer: {type: snabbdom},
 	/* State variables loading, method, selectedTable, query, and user are included 
 	to help with setting up GET / POST but may not be required for your project */
@@ -45,7 +45,7 @@ createCustomElement('x-71146-template-component', {
 		user:           	  null,
 	},
 	properties: {
-		title:	{ default: "Component REST API Explorer Testing:" },
+		title:	{ default: "Template Component" },
 	},
 	view,
 	styles,

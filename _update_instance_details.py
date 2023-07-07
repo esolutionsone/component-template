@@ -26,11 +26,11 @@ def prLightPurple(skk): print("\033[94m {}\033[00m" .format(skk))
 def prRed(skk): print("\033[91m {}\033[00m" .format(skk))
 
 # Specify the root directory and the old_scope_name you want to match
-scope_name     = '71146' # old_scope_name from our original working file
+scope_name     = '853443' # old_scope_name from our original working file
 component_name = 'template-component'
 prGreen("\nCurrent appcreator copmany code: x-" + scope_name + "-")
 prLightPurple("\nThis can be found by navigating to \"sys_properties.list\" in the filter navigator of your ServiceNow instance and searching for the property named \"glide.appcreator.company.code\".")
-prLightPurple("\nFor a developer instance, this will likely be a string of numbers! If you're using an organizational instance, it will most likely be a shorthand for your company (for example, ours is esg). \n\nIf you can't find your copmany code, you can try to deploy the component and an error should show the company code.\nFor example, here's an example of the error when deploying to the wrong Personal Developer Instance\n\"ERROR in Component tag name \"x-<scopename>-template-component\" \nmust start with the vendor prefix \"x-71146-\" \nIn this case, 71146 would be the code you enter for scope name!\n")
+prLightPurple("\nFor a developer instance, this will likely be a string of numbers! If you're using an organizational instance, it will most likely be a shorthand for your company (for example, ours is esg). \n\nIf you can't find your copmany code, you can try to deploy the component and an error should show the company code.\nFor example, here's an example of the error when deploying to the wrong Personal Developer Instance\n\"ERROR in Component tag name \"x-<scopename>-template-component\" \nmust start with the vendor prefix \"x-853443-\" \nIn this case, 853443 would be the code you enter for scope name!\n")
 
 #Run check to ensure appcreator company code is valid
 input_valid = False
@@ -51,7 +51,7 @@ change_component_name = input("Do you need to change the component name (current
 if change_component_name.lower() == 'y' or change_component_name.lower() == 'yes':
     new_component_name_valid = False
     while new_component_name_valid == False:
-        new_component_name = input("please enter your new component name (it is the text after your appcreator company code in the directory within src ex. x-71146-template-component >> template-component is the component name)")
+        new_component_name = input("please enter your new component name (it is the text after your appcreator company code in the directory within src ex. x-853443-template-component >> template-component is the component name)")
         if new_component_name == "":
             prRed("Please enter component name, an empty string is invalid")
         elif "/" in new_component_name:
@@ -81,23 +81,23 @@ print("Running update instance details script from directory: " + current_direct
 #Files & Directories to scrub/replace (windows & mac paths below)
 mac_files           = [ './now-ui.json',
                         './src/index.js',
-                        './src/x-71146-template-component/index.js',
-                        './src/x-71146-template-component/__tests__/test.x-71146-template-component.js',
+                        './src/x-853443-template-component/index.js',
+                        './src/x-853443-template-component/__tests__/test.x-853443-template-component.js',
                         './README.md',
                         './example/element.js',
                         './_update_instance_details.py' ]
-mac_dirs_and_files  = [ './src/x-71146-template-component/__tests__/test.x-71146-template-component.js',
-                        './src/x-71146-template-component' ]
+mac_dirs_and_files  = [ './src/x-853443-template-component/__tests__/test.x-853443-template-component.js',
+                        './src/x-853443-template-component' ]
 
 win_files           = [ '.\\now-ui.json',
                         '.\\src\\index.js',
-                        '.\\src\\x-71146-template-component\\index.js',
-                        '.\\src\\x-71146-template-component\\__tests__\\test.x-71146-template-component.js',
+                        '.\\src\\x-853443-template-component\\index.js',
+                        '.\\src\\x-853443-template-component\\__tests__\\test.x-853443-template-component.js',
                         '.\\README.md',
                         '.\\example\\element.js',
                         '.\\_update_instance_details.py' ]
-win_dirs_and_files = [  '.\\src\\x-71146-template-component\\__tests__\\test.x-71146-template-component.js',
-                        '.\\src\\x-71146-template-component' ]
+win_dirs_and_files = [  '.\\src\\x-853443-template-component\\__tests__\\test.x-853443-template-component.js',
+                        '.\\src\\x-853443-template-component' ]
 
 # If we're running Linux/Mac based, use mac files, elif we're using Windows, use Windows filepaths
 if  os.name == 'posix':
