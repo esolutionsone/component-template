@@ -4,11 +4,22 @@
 	        "innerComponents": [],
 			"uiBuilder": {
 				"associatedTypes": ["global.core", "global.landing-page"],
-				"label": "My Component",
+				"label": "Component-Template",
 				"icon": "document-outline",
-				"description": "A description of my component",
+				"description": "Component-Template",
 				"category": "primitives"
-			}
+			},
+			"properties": [
+				{
+					"name": "title",
+					"label": "Title",
+					"fieldType": "string",
+					"readOnly": false,
+					"defaultValue": "Component REST API Explorer Testing:",
+					"description": "Enter a title for the component.",
+					"mandatory": false
+				}
+			]
 	    }
 	},
 	"scopeName": "x_71146_template_0"

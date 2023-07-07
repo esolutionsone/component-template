@@ -1,1 +1,8 @@
+/* Default import for ServiceNow */
 @import '@servicenow/sass-kit/host';
+/* import styles for the LoadingIcon Component*/
+@import './components/LoadingIcon/LoadingIcon.scss';
+
+.user-greeting {
+    margin-left: 2rem;
+}
