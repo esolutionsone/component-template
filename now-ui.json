@@ -1,6 +1,6 @@
 {
 	"components": {
-	    "x-853443-template-component": {
+	    "x-853443-component-template": {
 	        "innerComponents": [],
 			"uiBuilder": {
 				"associatedTypes": ["global.core", "global.landing-page"],

@@ -1,5 +1,5 @@
-template-component
+component-template
 ===============================================
-template-component
+component-template
 
 Component Authors, provide some documentation for your users here!
