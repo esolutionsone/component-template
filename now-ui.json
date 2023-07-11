@@ -1,26 +1,29 @@
 {
-	"components": {
-	    "x-853443-component-template": {
-	        "innerComponents": [],
-			"uiBuilder": {
-				"associatedTypes": ["global.core", "global.landing-page"],
-				"label": "Component-Template",
-				"icon": "document-outline",
-				"description": "Component-Template",
-				"category": "primitives"
-			},
-			"properties": [
-				{
-					"name": "title",
-					"label": "Title",
-					"fieldType": "string",
-					"readOnly": false,
-					"defaultValue": "Component REST API Explorer Testing:",
-					"description": "Enter a title for the component.",
-					"mandatory": false
-				}
-			]
-	    }
-	},
-	"scopeName": "x_853443_template_0"
+    "components": {
+        "x-853443-component-template": {
+            "innerComponents": [],
+            "uiBuilder": {
+                "associatedTypes": [
+                    "global.core",
+                    "global.landing-page"
+                ],
+                "label": "Component-Template",
+                "icon": "document-outline",
+                "description": "Component-Template",
+                "category": "primitives"
+            },
+            "properties": [
+                {
+                    "name": "title",
+                    "label": "Title",
+                    "fieldType": "string",
+                    "readOnly": false,
+                    "defaultValue": "Component REST API Explorer Testing:",
+                    "description": "Enter a title for the component.",
+                    "mandatory": false
+                }
+            ]
+        }
+    },
+    "scopeName": "x_853443_component"
 }

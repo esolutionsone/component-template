@@ -1,4 +1,5 @@
 import os
+import json
 
 def replace_old_scope_name_in_file(files, old_scope_name, new_scope_name):
     #For each file, read the file in binary mode and replace all instances of the old_scope_name with the new old_scope_name
@@ -47,29 +48,46 @@ while input_valid == False:
     else:
         input_valid = True
 print("\n")
-new_component_name = ''
+new_component_name       = ''
+component_scope_name     = ''
+new_component_name_valid = False
 change_component_name = input("Do you need to change the component name (current component name "+component_name+"? (y,n):")
 if change_component_name.lower() == 'y' or change_component_name.lower() == 'yes':
-    new_component_name_valid = False
     while new_component_name_valid == False:
+        new_component_name_ok = 'n'
         new_component_name = input("please enter your new component name (it is the text after your appcreator company code in the directory within src \nex. x-853443-component-template >> component-template is the component name): ")
         if new_component_name == "":
             prRed("Please enter component name, an empty string is invalid")
+        elif " " in new_component_name:
+            prRed("Invalid component name, company code should not contain a space") 
         elif "/" in new_component_name:
-            prRed("Invalid component name, please enter a valid company code (should not contain /)")
+            prRed("Invalid component name, company code should not contain /")
         elif  "\\" in new_component_name:
-            prRed("Invalid component name, please enter a valid company code (should not contain \\)")
-        else:
+            prRed("Invalid component name, company code should not contain \\)")
+        component_scope_name = ("x_"+new_scope_name+"_"+new_component_name).replace('-','_')[:18]
+        # Check if the last character is an underscore and strip it if present
+        if component_scope_name[-1] == '_':
+            component_scope_name = component_scope_name[:-1]
+        new_component_name_ok = input("Your New Component Name is " + new_component_name + " and the component scope will be " + component_scope_name + "\nIs this ok? (y,n):")
+        if new_component_name_ok.lower() == 'y' or new_component_name_ok.lower() == 'yes':
             new_component_name_valid = True
         print("\n")
+else:
+    component_scope_name = ("x_"+new_scope_name+"_"+component_name).replace('-','_')[:18]
+    if component_scope_name[-1] == '_':
+            component_scope_name = component_scope_name[:-1]
 
-#    if  os.name == 'posix':
-#        replace_old_scope_name_in_file(['./_update_instance_details.py'], component_name, new_component_name)
-#    elif os.name == 'nt':
-#        replace_old_scope_name_in_file(['./_update_instance_details.py'], component_name, new_component_name)
-#    prGreen('Updated component name in _update_instance_details.py file! \n')
-# Call functions to replace scope old_scope_namees in file contents & to rename directories, & files
-# First cleanup file contents, then files, then directories to ensure the no "file not found" errors
+now_ui = ''
+if os.name == 'posix': 
+    now_ui = './now-ui.json'
+elif os.name == 'nt':
+    now_ui = '.\\now-ui.json'
+
+with open(now_ui) as file:
+    json_data = json.load(file)
+json_data['scopeName'] = component_scope_name
+with open(now_ui, 'w') as file:
+    json.dump(json_data, file, indent=4)
 
 #Check if we're in the appropriate directory
 #If not, Navigate to the appropriate directory to run the script
@@ -78,7 +96,7 @@ path = os.path.dirname(os.path.abspath(__file__))
 current_directory = os.path.basename(path)
 os.chdir(path)
 print("Running update instance details script from directory: " + current_directory)
-
+print(os.path.abspath(__file__))
 #Files & Directories to scrub/replace (windows & mac paths below)
 mac_files           = [ './now-ui.json',
                         './src/index.js',
@@ -102,8 +120,6 @@ win_files           = [ '.\\now-ui.json',
 win_dirs_and_files = [  '.\\src\\x-853443-component-template\\__tests__\\test.x-853443-component-template.js',
                         '.\\src\\x-853443-component-template' ]
 
-print("scope_name: ",scope_name,new_scope_name)
-print("component_name: ", component_name,new_component_name)
 # If we're running Linux/Mac based, use mac files, elif we're using Windows, use Windows filepaths
 if  os.name == 'posix':
     #replace scope in all files but this one & then update directory names
@@ -127,5 +143,19 @@ elif os.name == 'nt':
     else:
         rename_dirs_and_files(win_dirs_and_files, scope_name+'-'+component_name, new_scope_name+'-'+component_name)
     replace_old_scope_name_in_file(['.\\_update_instance_details.py'], scope_name, new_scope_name)
+
+if new_component_name != '':
+    # Get the current directory path
+    cur_dir = os.getcwd()
+    # Get the parent directory path
+    par_dir = os.path.dirname(cur_dir)
+    # Construct the new directory path
+    if new_component_name != '':
+        new_directory_path = os.path.join(par_dir, new_component_name)
+    else:
+        new_directory_path = os.path.join(par_dir, component_name)
+    # Rename the directory
+    os.rename(cur_dir, new_directory_path)
+    print(cur_dir,',',par_dir)
 
 prGreen("\nCleanup Complete!\n")
