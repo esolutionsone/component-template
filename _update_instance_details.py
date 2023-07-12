@@ -8,7 +8,7 @@ component_name = 'component-template'
 mac_files           = [ './now-ui.json','./src/index.js','./src/x-853443-component-template/index.js','./src/x-853443-component-template/__tests__/test.x-853443-component-template.js','./README.md','./example/element.js','./package.json','./package-lock.json' ]
 mac_dirs_and_files  = [ './src/x-853443-component-template/__tests__/test.x-853443-component-template.js','./src/x-853443-component-template' ]
 win_files           = [ '.\\now-ui.json','.\\src\\index.js','.\\src\\x-853443-component-template\\index.js','.\\src\\x-853443-component-template\\__tests__\\test.x-853443-component-template.js','.\\README.md','.\\example\\element.js','.\\package.json','.\\package-lock.json' ]
-win_dirs_and_files = [  '.\\src\\x-853443-component-template\\__tests__\\test.x-853443-component-template.js','.\\src\\x-853443-component-template' ]
+win_dirs_and_files  = [ '.\\src\\x-853443-component-template\\__tests__\\test.x-853443-component-template.js','.\\src\\x-853443-component-template' ]
 #Utility Functions
 def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
 def prLightPurple(skk): print("\033[94m {}\033[00m" .format(skk))
