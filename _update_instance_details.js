@@ -91,7 +91,20 @@ function updateNowUIComponentScope(filepath, updateScopeName) {
     jsonData.scopeName = updateScopeName;
     fs.writeFileSync(filepath, JSON.stringify(jsonData, null, 4), 'utf-8');
 }
-
+async function updateLockedDirectory(directoryPath, newDirectoryPath) {
+    const tempDirectoryPath = path.join(directoryPath, '..', newDirectoryPath);
+    try {
+        // Copy the locked directory to a temporary location
+        await fs.copy(directoryPath, tempDirectoryPath);
+        // Replace the original directory with the modified one
+        await fs.remove(directoryPath);
+        await fs.move(tempDirectoryPath, directoryPath); 
+        console.log('Directory update complete.');
+    } 
+    catch (error) {
+        console.error('Error updating directory:', error);
+    }
+}
 // Renaming logic, user input, validation checking, etc.
 if (require.main === module) {
     prGreen(`\nCurrent appcreator company code: x-${scope_name}-`);
@@ -155,7 +168,12 @@ if (require.main === module) {
         const cur_dir = process.cwd();
         const par_dir = path.dirname(cur_dir);
         const new_directory_path = path.join(par_dir, new_component_name);
-        fs.renameSync(cur_dir, new_directory_path);
+        if (os.platform() == 'win32'){
+            updateLockedDirectory(cur_dir, new_directory_path)
+        }
+        else if (os.platform == 'darwin'){
+            fs.renameSync(cur_dir, new_directory_path);
+        }
         console.log(cur_dir, ',', par_dir);
     }
 
