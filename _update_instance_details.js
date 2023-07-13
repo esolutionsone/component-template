@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const readlineSync = require('readline-sync');
 const os = require('os');
