@@ -47,14 +47,18 @@ def validate_input(value, element):
 def run_cleanup(files,dirs,this_file):
     #replace scope in all files but this one & then update directory names
     replace_old_scope_name_in_file(files, scope_name, new_scope_name)
-    #replace scope in this file & component it it has been updated
+    #replace scope in this file & component if it has been updated
     if new_component_name != '':
         replace_old_scope_name_in_file(files, component_name, new_component_name)
-        replace_old_scope_name_in_file([this_file], component_name, new_component_name)
+
         rename_dirs_and_files(dirs, scope_name+'-'+component_name, new_scope_name+'-'+new_component_name)
     else:
         rename_dirs_and_files(dirs, scope_name+'-'+component_name, new_scope_name+'-'+component_name)
+    update_this_file(this_file)
+def update_this_file(this_file):
     replace_old_scope_name_in_file([this_file], scope_name, new_scope_name)
+    if new_component_name != "":
+        replace_old_scope_name_in_file([this_file], component_name, new_component_name)
 def cleanup_component_name(scope,component):
     cleanup_comp_scope_name = ("x_"+scope+"_"+component).replace('-','_')[:18]
     if cleanup_comp_scope_name[-1] == '_':
