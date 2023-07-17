@@ -140,8 +140,6 @@ if (require.main === module) {
 
     const currentDirectory = path.basename(__dirname);
     console.log(`Running update instance details script from directory: ${currentDirectory}`);
-    console.log(__filename);
-    console.log(currentDirectory + "- testing 123")
 
     if (os.platform() === 'darwin') {
         runCleanup(files, dirsAndFiles, './_update_instance_details.js',new_scope_name,new_component_name,component_name);

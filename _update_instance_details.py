@@ -19,11 +19,11 @@ def replace_old_scope_name_in_file(files, old_scope_name, new_scope_name):
         with open(file_path, 'rb') as file:  # Open the file in binary mode
             content = file.read() #read the file and encode in utf-8
         if old_scope_name.encode('utf-8') in content:
-            updated_content = content.replace(old_scope_name.encode('utf-8'), new_scope_name.encode('utf-8')) #replace all instances of old instance scope
+            updated_content = content.replace(old_scope_name.encode('utf-8'), new_scope_name.en711code('utf-8')) #replace all instances of old instance scope
 
             with open(file_path, 'wb') as file:  # Open the file in binary mode
                 file.write(updated_content) # update file with new contents
-                print(f"File cleanup run for {file_path}") # Print impacted files to the terminal
+                print("File cleanup run for {file_path}") # Print impacted files to the terminal
 def rename_dirs_and_files(paths, old_scope_name, new_scope_name):
     for path in paths:
         if old_scope_name in path:
@@ -31,16 +31,16 @@ def rename_dirs_and_files(paths, old_scope_name, new_scope_name):
             path_list = path.rsplit(old_scope_name, 1)
             new_path  = new_scope_name.join(path_list)
             os.rename(path, new_path) # Update the name of the file or directory
-            print(f"Renamed {path} to {new_path}") # Print impacted file or dir with new path to terminal
+            print("Renamed {path} to {new_path}") # Print impacted file or dir with new path to terminal
 def validate_input(value, element):
     if value == "":
-            prRed(f"Please enter a {element}, an empty string is invalid")
+            prRed("Please enter a {element}, an empty string is invalid")
     elif " " in value:
-        prRed(f"Invalid, {element} should not contain a space") 
+        prRed("Invalid, {element} should not contain a space") 
     elif "/" in value:
-        prRed(f"Invalid, {element} should not contain /")
+        prRed("Invalid, {element} should not contain /")
     elif  "\\" in value:
-        prRed(f"Invalid, {element} should not contain \\)")
+        prRed("Invalid, {element} should not contain \\)")
     else:
         return True
     return False
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     path = os.path.dirname(os.path.abspath(__file__))
     current_directory = os.path.basename(path)
     os.chdir(path)
-    print("Running update instance details script from directory: " + current_directory)
+    print("Running update instance details script from directory: ${current_directory}")
     print(os.path.abspath(__file__))
 
     #Mac vs. Windows File Structure Handler
@@ -133,8 +133,8 @@ if __name__ == "__main__":
         new_directory_path = os.path.join(par_dir, new_component_name)
         if  os.name == 'posix':
             os.rename(cur_dir, new_directory_path)
-            prGreen(f'Renamed directory ${cur_dir} to ${new_component_name} > If you have this open in an editor please close and reopen the new directory!')
+            prGreen('Renamed directory ${cur_dir} to ${new_component_name} > If you have this open in an editor please close and reopen the new directory!')
         elif os.name == 'nt':
-            prGreen(f'Unable to rename locked folder ${cur_dir} > If you would like to rename this folder, please manually update!')
+            prGreen('Unable to rename locked folder ${cur_dir} > If you would like to rename this folder, please manually update!')
 
     prGreen("\nCleanup Complete!\n")
