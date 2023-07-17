@@ -92,17 +92,22 @@ function updateNowUIComponentScope(filepath, updateScopeName) {
     fs.writeFileSync(filepath, JSON.stringify(jsonData, null, 4), 'utf-8');
 }
 async function updateLockedDirectory(directoryPath, newDirectoryPath) {
-    const tempDirectoryPath = path.join(directoryPath, '..', newDirectoryPath);
+    const tempDirectoryPath = path.join(directoryPath, '..', 'temp');
+
     try {
-        // Copy the locked directory to a temporary location
-        await fs.copy(directoryPath, tempDirectoryPath);
-        // Replace the original directory with the modified one
-        await fs.remove(directoryPath);
-        await fs.move(tempDirectoryPath, directoryPath); 
-        console.log('Directory update complete.');
-    } 
-    catch (error) {
-        console.error('Error updating directory:', error);
+      // Copy the locked directory to a temporary location
+      await fs.copy(directoryPath, tempDirectoryPath);
+  
+      // Delete the original locked directory
+      await fs.remove(directoryPath);
+  
+      // Rename the copied directory
+      const newDirectoryPath = path.join(directoryPath, '..', newDirectoryName);
+      await fs.rename(tempDirectoryPath, newDirectoryPath);
+  
+      console.log(`Directory renamed to ${newDirectoryName}`);
+    } catch (error) {
+      console.error('Error renaming directory:', error);
     }
 }
 // Renaming logic, user input, validation checking, etc.
