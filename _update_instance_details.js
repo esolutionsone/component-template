@@ -91,25 +91,6 @@ function updateNowUIComponentScope(filepath, updateScopeName) {
     jsonData.scopeName = updateScopeName;
     fs.writeFileSync(filepath, JSON.stringify(jsonData, null, 4), 'utf-8');
 }
-async function updateLockedDirectory(directoryPath, newDirectoryPath) {
-    const tempDirectoryPath = path.join(directoryPath, '..', 'temp');
-
-    try {
-      // Copy the locked directory to a temporary location
-      await fs.copy(directoryPath, tempDirectoryPath);
-  
-      // Delete the original locked directory
-      await fs.remove(directoryPath);
-  
-      // Rename the copied directory
-      const newDirectoryPath = path.join(directoryPath, '..', newDirectoryName);
-      await fs.rename(tempDirectoryPath, newDirectoryPath);
-  
-      console.log(`Directory renamed to ${newDirectoryName}`);
-    } catch (error) {
-      console.error('Error renaming directory:', error);
-    }
-}
 // Renaming logic, user input, validation checking, etc.
 if (require.main === module) {
     prGreen(`\nCurrent appcreator company code: x-${scope_name}-`);
@@ -174,12 +155,12 @@ if (require.main === module) {
         const par_dir = path.dirname(cur_dir);
         const new_directory_path = path.join(par_dir, new_component_name);
         if (os.platform() == 'win32'){
-            updateLockedDirectory(cur_dir, new_directory_path)
+            prGreen(`Unable to rename locked folder ${cur_dir} > If you would like to rename this folder, please manually update!`)
         }
         else if (os.platform == 'darwin'){
             fs.renameSync(cur_dir, new_directory_path);
+            prGreen(`Renamed directory ${cur_dir} to ${new_component_name} > If you have this open in an editor please close and reopen the new directory!`)
         }
-        console.log(cur_dir, ',', par_dir);
     }
 
     prGreen('\nCleanup Complete!\n');

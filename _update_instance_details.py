@@ -130,11 +130,11 @@ if __name__ == "__main__":
     if new_component_name != '':
         cur_dir = os.getcwd()
         par_dir = os.path.dirname(cur_dir)
-        if new_component_name != '':
-            new_directory_path = os.path.join(par_dir, new_component_name)
-        else:
-            new_directory_path = os.path.join(par_dir, component_name)
-        os.rename(cur_dir, new_directory_path)
-        print(cur_dir,',',par_dir)
+        new_directory_path = os.path.join(par_dir, new_component_name)
+        if  os.name == 'posix':
+            os.rename(cur_dir, new_directory_path)
+            prGreen(f'Renamed directory ${cur_dir} to ${new_component_name} > If you have this open in an editor please close and reopen the new directory!')
+        elif os.name == 'nt':
+            prGreen(f'Unable to rename locked folder ${cur_dir} > If you would like to rename this folder, please manually update!')
 
     prGreen("\nCleanup Complete!\n")
