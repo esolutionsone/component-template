@@ -19,7 +19,7 @@ def replace_old_scope_name_in_file(files, old_scope_name, new_scope_name):
         with open(file_path, 'rb') as file:  # Open the file in binary mode
             content = file.read() #read the file and encode in utf-8
         if old_scope_name.encode('utf-8') in content:
-            updated_content = content.replace(old_scope_name.encode('utf-8'), new_scope_name.en711code('utf-8')) #replace all instances of old instance scope
+            updated_content = content.replace(old_scope_name.encode('utf-8'), new_scope_name.encode('utf-8')) #replace all instances of old instance scope
 
             with open(file_path, 'wb') as file:  # Open the file in binary mode
                 file.write(updated_content) # update file with new contents
