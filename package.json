@@ -35,6 +35,7 @@
 		"dev": "snc ui-component develop",
 		"start": "npm run kill && echo 'Successfully Killed Port' && sleep 2; npm run dev",
 		"deploy": "snc ui-component deploy --force",
+		"rename": "node _update_instance_details.js",
 		"kill": "killall node"
 	}
 }
