@@ -3,7 +3,7 @@ Component Template
 
 ## Intro
 The purpose of this component is to provide a template to start from on your custom component projects 
-**The component-template is a simplified/baseline of the REST-API-EXPLORER example component we created** [here](https://github.com/esolutionsone/REST-API-Explorer-Example)
+**The component-template is a simplified/baseline of the** [REST-API-EXPLORER](https://github.com/esolutionsone/REST-API-Explorer-Example) **example component. We created this component to illustrate how a more complex component could be structured and to show how REST messages could be used to fetch records from and create records in your instance.**
 It contains a few boiler plate REST examples, a loading spinner, and a file scrubber so you can rename the component, & update the component with your organizational app code.
  
 ---
